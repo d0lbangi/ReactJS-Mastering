@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+import React, { useState, useEffect } from 'react'
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+const App = () => {
 
-### `npm start`
+	const [value, setValue] = useState(0);
+	const [name, setName] = useState('');
+	const [nickname, setNickname] = useState('');
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+	const handleCounterPlus = () => {
+		setValue(value+1);
+	}
+	const handleCounterMinus = () => {
+		setValue(value-1);
+	}
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+	const onChangeName = e => {
+		setName(e.target.value);
+	}
+	const onChangenickname = e => {
+		setNickname(e.target.value);
+	}
+	
+	const formatName = (user) => {
+		return user.firstName + ' ' + user.lastName;
+	}
 
-### `npm test`
+	const user = {
+		firstName : 'JEONGHO',
+		lastName : 'PARK'
+	}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+	const element = {
+		type: 'h1',
+		props: {
+			className: 'greeting',
+			children: 'Hello, world!'
+		}
+	}
 
-### `npm run build`
+	const myName = (
+		<>
+			<h1>
+				<p>Hi, My name is {formatName(user)}!!</p>
+				<p>Good to meet you</p>
+			</h1>
+		</>
+	)	
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+	return (
+		<>
+			<p>Current Counter Value : <b>{value}</b></p>		
+			<button onClick={handleCounterPlus}>+</button>
+			<button onClick={handleCounterMinus}>-</button>
+			<div>
+				<input value={name} onChange={onChangeName}/>
+				<input value={nickname} onChange={onChangenickname}/>
+			</div>
+			<div>이름 : {name}, 닉네임 : {nickname}</div><br/><br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+			{myName}
+		</>
+	)
+}
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App
